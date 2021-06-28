@@ -29,6 +29,28 @@ func main() {
 	}
 }
 
+func Roundi(a int, n int) int {
+	if n < 1 {
+		return a
+	}
+	ne := 1
+	for i := 0; i < n; i++ {
+		ne *= 10
+	}
+	if a < ne {
+		return a
+	}
+	var am int
+	e := 1
+	for am = a; am > ne; am /= 10 {
+		e *= 10
+	}
+	if a-am*e < (am+1)*e-a {
+		return am * e
+	}
+	return (am + 1) * e
+}
+
 func Round2SignificantDigits(a float64) (float64, float64) {
 	e := math.Floor(math.Log10(a))
 	b := math.Pow(10, e)
